@@ -1,0 +1,20 @@
+name: tag-test
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  tag-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 6
+          fetch-tags: true
+
+      - name: Tag test
+        run: |
+          echo "Tagging test"
+          git describe --tags --abbrev=0
